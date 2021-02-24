@@ -44,7 +44,10 @@ export default class CourseTable extends
                     </Link>
                 </div>
 
-                <div>
+
+                <table className="table">
+                    <thead></thead>
+                    <tbody>
                     {
                         this.props.courses.map(course =>
                             <CourseRow
@@ -56,7 +59,8 @@ export default class CourseTable extends
                                 lastModified={course.lastModified}
                                 owner={course.owner}/>)
                     }
-                </div>
+                    </tbody>
+                </table>
             </div>
         )
     }

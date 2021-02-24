@@ -20,9 +20,7 @@ const CourseCard = (
     }
 
     return(
-        <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 card"
-             style={{width: "18rem", margin: "15px"}}>
-
+        <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 card">
             <img src="https://www.valuecoders.com/blog/wp-content/uploads/2016/08/react.png"
                  className="card-img-top" alt="..."/>
 

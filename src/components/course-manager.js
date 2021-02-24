@@ -73,9 +73,11 @@ export default class CourseManager
                     form-control wbdv-field wbdv-course-manager-title-input"
                            placeholder="New Course Title"/>
 
-                    <i className="col-md-1 col-1 col-lg-1 fa fa-plus-circle fa-2x
-                    wbdv-button wbdv-course-manager-add-course"
-                       onClick={this.addCourse}></i>
+                    <span style={{color: "red"}}>
+                        <i className="col-md-1 col-1 col-lg-1 fa fa-plus-circle fa-2x
+                        wbdv-button wbdv-course-manager-add-course"
+                           onClick={this.addCourse}></i>
+                    </span>
                 </div>
 
                 <Route path="/courses/table" exact={true} >
