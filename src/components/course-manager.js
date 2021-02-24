@@ -6,13 +6,24 @@ import courseService from "../services/course-service";
 
 export default class CourseManager
     extends React.Component {
-    state = {
-        courses: []
+
+    constructor(props){
+        super(props);
+        this.state = {
+            title : '',
+            courses: []
+        }
+        this.updateInput = this.updateInput.bind(this);
+        this.addCourse = this.addCourse.bind(this);
     }
 
     componentDidMount() {
         courseService.findAllCourses()
             .then(courses => this.setState({courses}))
+    }
+
+    updateInput(event){
+        this.setState({title : event.target.value})
     }
 
     updateCourse = (course) => {
@@ -43,7 +54,7 @@ export default class CourseManager
 
     addCourse = () => {
         const newCourse = {
-            title: "New Course",
+            title: this.state.title,
             owner: "me",
             lastModified: new Date().toISOString().split('T')[0]
         }
@@ -69,8 +80,9 @@ export default class CourseManager
                         Course Manager
                     </h2>
 
-                    <input className="col-md-0 col-0 col-lg-8
+                    <input type="text" className="col-md-0 col-0 col-lg-8
                     form-control wbdv-field wbdv-course-manager-title-input"
+                           onChange={this.updateInput}
                            placeholder="New Course Title"/>
 
                     <span style={{color: "red"}}>
