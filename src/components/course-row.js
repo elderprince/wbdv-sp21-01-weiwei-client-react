@@ -21,7 +21,7 @@ const CourseRow = (
 
     return(
         <tr  className="row">
-            <td className="col-md-9 col-11 col-lg-7">
+            <td className="col-md-8 col-10 col-lg-6">
                 {
                     !editing &&
                     <Link to="/editor">

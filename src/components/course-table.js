@@ -12,7 +12,7 @@ export default class CourseTable extends
         return(
             <div>
                 <div className="row hidden-xs">
-                    <div className="col-md-9 col-11 col-lg-7
+                    <div className="col-md-8 col-10 col-lg-6
                     wbdv-header wbdv-course-table-title">
                         Title
                     </div>
@@ -44,10 +44,7 @@ export default class CourseTable extends
                     </Link>
                 </div>
 
-
-                <table className="table">
-                    <thead></thead>
-                    <tbody>
+                <div>
                     {
                         this.props.courses.map(course =>
                             <CourseRow
@@ -59,8 +56,7 @@ export default class CourseTable extends
                                 lastModified={course.lastModified}
                                 owner={course.owner}/>)
                     }
-                    </tbody>
-                </table>
+                </div>
             </div>
         )
     }
