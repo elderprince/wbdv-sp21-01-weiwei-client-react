@@ -70,7 +70,10 @@ export default class CourseManager
     render() {
         return(
             <div>
-                <div className="row">
+                <div className="row"
+                     style={{position: 'fixed', width: '100%',
+                         backgroundColor: 'white', padding: '5px',
+                         zIndex: '1'}}>
                     <Link to="/">
                         <i className="col-md-1 col-1 col-lg-1
                         fas fa-2x fa-home
@@ -95,6 +98,9 @@ export default class CourseManager
                            onClick={this.addCourse}></i>
                     </span>
                 </div>
+
+                <br/>
+                <br/>
 
                 <Route path="/courses/table" exact={true} >
                     <CourseTable
