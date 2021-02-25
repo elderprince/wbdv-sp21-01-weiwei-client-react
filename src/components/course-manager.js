@@ -22,10 +22,6 @@ export default class CourseManager
             .then(courses => this.setState({courses}))
     }
 
-    updateInput(event){
-        this.setState({title : event.target.value})
-    }
-
     updateCourse = (course) => {
         courseService.updateCourse(course._id, course)
             .then(status => {
@@ -52,17 +48,23 @@ export default class CourseManager
             })
     }
 
-    addCourse = () => {
+    updateInput(event){
+        this.setState({title : event.target.value})
+    }
+
+    addCourse (e) {
+        e.preventDefault();
         const newCourse = {
             title: this.state.title,
             owner: "me",
             lastModified: new Date().toISOString().split('T')[0]
-        }
+        };
         courseService.createCourse(newCourse)
             .then(actualCourse => {
                 this.state.courses.push(actualCourse)
                 this.setState(this.state)
-            })
+            });
+        this.titleInput.value = '';
     }
 
     render() {
@@ -75,14 +77,16 @@ export default class CourseManager
                         wbdv-button wbdv-course-manager-to-home"></i>
                     </Link>
 
-                    <h2 className="col-md-10 col-10 col-lg-2
+                    <h3 className="col-md-10 col-10 col-lg-2
                     wbdv-header wbdv-course-manager-title">
                         Course Manager
-                    </h2>
+                    </h3>
 
-                    <input type="text" className="col-md-0 col-0 col-lg-8
-                    form-control wbdv-field wbdv-course-manager-title-input"
+                    <input type="text"
+                           className="col-md-0 col-0 col-lg-8
+                           form-control wbdv-field wbdv-course-manager-title-input"
                            onChange={this.updateInput}
+                           ref={(ref) => this.titleInput= ref}
                            placeholder="New Course Title"/>
 
                     <span style={{color: "red"}}>
