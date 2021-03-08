@@ -33,17 +33,19 @@ export default class CourseGrid extends
                     </div>
                 </div>
 
-                {
-                    this.props.courses.map(course =>
-                        <CourseCard
-                            key={course._id}
-                            deleteCourse={this.props.deleteCourse}
-                            updateCourse={this.props.updateCourse}
-                            course={course}
-                            title={course.title}
-                            lastModified={course.lastModified}
-                            owner={course.owner}/>)
-                }
+                <div className="row">
+                    {
+                        this.props.courses.map(course =>
+                            <CourseCard
+                                key={course._id}
+                                deleteCourse={this.props.deleteCourse}
+                                updateCourse={this.props.updateCourse}
+                                course={course}
+                                title={course.title}
+                                lastModified={course.lastModified}
+                                owner={course.owner}/>)
+                    }
+                </div>
             </div>
         )
     }
