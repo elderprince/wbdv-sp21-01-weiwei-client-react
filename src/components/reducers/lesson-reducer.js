@@ -9,7 +9,7 @@ const lessonReducer = (state = initialState, action) => {
                 ...state,
                 lessons: [
                     ...state.lessons,
-                    action.lessons
+                    action.lesson
                 ]
             }
 

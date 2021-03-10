@@ -9,7 +9,7 @@ const moduleReducers = (state = initialState, action) => {
                 ...state,
                 modules: [
                     ...state.modules,
-                    action.modules
+                    action.module
                 ]
             }
 

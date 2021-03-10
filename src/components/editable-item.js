@@ -21,7 +21,7 @@ const EditableItem = (
                         {item.title}
                     </Link>
 
-                    <i onClick={() => setEditing(true)}
+                    <i onClick={() => setEditing(true)}n
                        className="fas fa-edit float-right">
                     </i>
                 </>
@@ -42,7 +42,10 @@ const EditableItem = (
                        className="fas fa-check float-right">
                     </i>
 
-                    <i onClick={() => deleteItem(item)}
+                    <i onClick={() => {
+                        deleteItem(item)
+                        setEditing(false)
+                    }}
                        className="fas fa-times float-right">
                     </i>
                 </>
