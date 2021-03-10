@@ -11,38 +11,34 @@ const ModuleList = (
         updateModule,
         deleteModule,
         findModulesForCourse
-    }) =>
-
-{
+    }) => {
     const {layout, courseId} = useParams();
 
     useEffect(() => {
         findModulesForCourse(courseId)
     }, [])
 
-    return(
-        <div>
-            <ul className="list-group">
-                {
-                    modules.map(module =>
-                        <li className="list-group-item">
-                            <EditableItem
-                                to={`/courses/${layout}/edit/${courseId}/modules/${module._id}`}
-                                deleteItem={deleteModule}
-                                updateItem={updateModule}
-                                item={module}/>
-                        </li>
-                    )
-                }
+    return(<div>
+        <ul className="list-group">
+            {
+                modules.map(module =>
+                    <li className="list-group-item">
+                        <EditableItem
+                            to={`/courses/${layout}/edit/${courseId}/modules/${module._id}`}
+                            deleteItem={deleteModule}
+                            updateItem={updateModule}
+                            item={module}/>
+                    </li>
+                )
+            }
 
-                <li className="list-group-item">
-                    <i onClick={() => createModule(courseId)}
-                       className="fas fa-plus fa-2x"></i>
-                </li>
-            </ul>
-        </div>
-    )
-}
+            <li className="list-group-item">
+                <i onClick={() => createModule(courseId)}
+                   className="fas fa-plus">
+                </i>
+            </li>
+        </ul>
+    </div>)}
 
 const stpm = (state) => ({
     modules: state.moduleReducer.modules
@@ -56,7 +52,7 @@ const dtpm = (dispatch) => ({
 
     updateModule: (newItem) => {
         moduleService.updateModule(newItem._id, newItem)
-            .then(status => dispatch({type: "UPDATE_MODULE", updateModule: newItem}))
+            .then(status => dispatch({type: "UPDATE_MODULE", moduleToUpdate: newItem}))
     },
 
     deleteModule: (moduleToDelete) => {
@@ -64,8 +60,8 @@ const dtpm = (dispatch) => ({
             .then(status => dispatch({type: "DELETE_MODULE", moduleToDelete: moduleToDelete}))
     },
 
-    findModuleForCourse: (courseId) => {
-        moduleService.findModuleForCourse(courseId)
+    findModulesForCourse: (courseId) => {
+        moduleService.findModulesForCourse(courseId)
             .then(modules => dispatch({
                 type: "FIND_MODULES_FOR_COURSE",
                 modules: modules

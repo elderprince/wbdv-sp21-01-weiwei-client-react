@@ -1,9 +1,5 @@
 const initialState = {
-    modules: [
-        {title: 'CS5610', _id: '123'},
-        {title: 'DS5220', _id: '456'},
-        {title: 'CS5800', _id: '789'},
-    ]
+    modules: []
 }
 
 const moduleReducers = (state = initialState, action) => {
@@ -20,7 +16,7 @@ const moduleReducers = (state = initialState, action) => {
         case "DELETE_MODULE":
             return {
                 ...state,
-                modules: state.filter(module => {
+                modules: state.modules.filter(module => {
                     if(module._id !== action.moduleToDelete._id) {
                         return true
                     } else {
@@ -33,8 +29,8 @@ const moduleReducers = (state = initialState, action) => {
             return {
                 ...state,
                 modules: state.modules.map(module => {
-                    if (module._id === action.updateModule._id) {
-                        return action.updateModule
+                    if(module._id === action.moduleToUpdate._id) {
+                        return action.moduleToUpdate
                     } else {
                         return module
                     }
@@ -46,6 +42,7 @@ const moduleReducers = (state = initialState, action) => {
                 ...state,
                 modules: action.modules
             }
+
         default: return state
     }
 }
