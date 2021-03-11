@@ -12,11 +12,11 @@ const TopicPills = (
         deleteTopic,
         findTopicsForLesson
     }) => {
-    const {layout, courseId, moduleId, lessonId} = useParams();
+    const {layout, courseId, moduleId, lessonId, topicId} = useParams();
 
     useEffect(() => {
         findTopicsForLesson(lessonId)
-    }, [])
+    }, [lessonId, topicId])
 
     return(<div>
         <ul className="nav nav-pills nav-justified">

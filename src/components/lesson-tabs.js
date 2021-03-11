@@ -12,11 +12,11 @@ const LessonTabs = (
         deleteLesson,
         findLessonsForModule
     }) => {
-    const {layout, courseId, moduleId} = useParams();
+    const {layout, courseId, moduleId, lessonId} = useParams();
 
     useEffect(() => {
         findLessonsForModule(moduleId)
-    }, [])
+    }, [moduleId, lessonId])
 
     return(<div>
         <ul className="nav nav-tabs nav-justified">
