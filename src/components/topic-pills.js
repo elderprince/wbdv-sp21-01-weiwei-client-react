@@ -22,9 +22,9 @@ const TopicPills = (
         <ul className="nav nav-pills nav-justified">
             {
                 topics.map(topic =>
-                    <li className="nav-item">
+                    <li className="nav-item active">
                         <EditableItem
-                            to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
+                            to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}`}
                             deleteItem={deleteTopic}
                             updateItem={updateTopic}
                             item={topic}/>
@@ -41,7 +41,7 @@ const TopicPills = (
     </div>)}
 
 const stpm = (state) => ({
-    topics: state.moduleReducer.topics
+    topics: state.topicReducer.topics
 })
 
 const dtpm = (dispatch) => ({
