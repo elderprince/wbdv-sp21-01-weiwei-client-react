@@ -22,7 +22,7 @@ const LessonTabs = (
         <ul className="nav nav-tabs nav-justified">
             {
                 lessons.map(lesson =>
-                    <li className="nav-item active">
+                    <li className="nav-item">
                         <EditableItem
                             to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
                             deleteItem={deleteLesson}

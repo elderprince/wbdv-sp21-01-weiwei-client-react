@@ -19,10 +19,10 @@ const TopicPills = (
     }, [lessonId, topicId])
 
     return(<div>
-        <ul className="nav nav-pills nav-justified">
+        <ul className="nav nav-pills nav-fill">
             {
                 topics.map(topic =>
-                    <li className="nav-item active">
+                    <li className="nav-item active" data-toggle="pill">
                         <EditableItem
                             to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
                             deleteItem={deleteTopic}
