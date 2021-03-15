@@ -6,7 +6,8 @@ const EditableItem = (
         to,
         item,
         updateItem,
-        deleteItem
+        deleteItem,
+        active
     }) => {
 
     const [editing, setEditing] = useState(false)
@@ -17,7 +18,8 @@ const EditableItem = (
             {
                 !editing &&
                 <>
-                    <Link to={to}>
+                    <Link to={to}
+                          className={`nav-link ${active? 'active':''}`}>
                         {item.title}
                     </Link>
 

@@ -15,7 +15,9 @@ const TopicPills = (
     const {layout, courseId, moduleId, lessonId, topicId} = useParams();
 
     useEffect(() => {
-        findTopicsForLesson(lessonId)
+        if (lessonId !== "undefined" && typeof lessonId !== "undefined") {
+            findTopicsForLesson(lessonId)
+        }
     }, [lessonId, topicId])
 
     return(<div>
@@ -27,7 +29,8 @@ const TopicPills = (
                             to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topic._id}`}
                             deleteItem={deleteTopic}
                             updateItem={updateTopic}
-                            item={topic}/>
+                            item={topic}
+                            active={topic._id === topicId}/>
                     </li>
                 )
             }

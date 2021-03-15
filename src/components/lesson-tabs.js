@@ -15,7 +15,9 @@ const LessonTabs = (
     const {layout, courseId, moduleId, lessonId} = useParams();
 
     useEffect(() => {
-        findLessonsForModule(moduleId)
+        if (moduleId !== "undefined" && typeof moduleId !== "undefined") {
+            findLessonsForModule(moduleId)
+        }
     }, [moduleId, lessonId])
 
     return(<div>
@@ -27,7 +29,8 @@ const LessonTabs = (
                             to={`/courses/${layout}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
                             deleteItem={deleteLesson}
                             updateItem={updateLesson}
-                            item={lesson}/>
+                            item={lesson}
+                            active={lesson._id === lessonId}/>
                     </li>
                 )
             }
