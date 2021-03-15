@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import moduleReducer from "../reducers/module-reducer";
 import lessonReducer from "../reducers/lesson-reducer";
 import topicReducer from "../reducers/topic-reducer";
@@ -18,14 +18,15 @@ const reducer = combineReducers({
 const store = createStore(reducer)
 
 const CourseEditor = ({history}) => {
+    const {layout} = useParams();
+
     return(
         <Provider store={store}>
             <div>
                 <div class="wbdv-sticky-top wbdv-padding-5px">
                     <div class="row">
-                        <Link to="courses/table">
-                            <i className="col-1 wbdv-course-editor wbdv-close fas fa-times"
-                               onClick={() => history.goBack()}></i>
+                        <Link to={`/courses/${layout}`}>
+                            <i className="col-1 wbdv-course-editor wbdv-close fas fa-times"></i>
                         </Link>
 
                         <div class="col-2 wbdv-course-title">
