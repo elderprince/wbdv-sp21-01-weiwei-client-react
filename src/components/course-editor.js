@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link, useParams} from "react-router-dom";
 import moduleReducer from "../reducers/module-reducer";
 import lessonReducer from "../reducers/lesson-reducer";
@@ -8,6 +8,7 @@ import {Provider} from "react-redux";
 import ModuleList from "./module-list";
 import LessonTabs from "./lesson-tabs";
 import TopicPills from "./topic-pills";
+import courseService from "../services/course-service";
 
 const reducer = combineReducers({
     moduleReducer: moduleReducer,
@@ -17,8 +18,14 @@ const reducer = combineReducers({
 
 const store = createStore(reducer)
 
-const CourseEditor = ({history}) => {
-    const {layout} = useParams();
+const CourseEditor = ({}) => {
+    const {layout, courseId} = useParams();
+
+    const [Title, setTitle] = useState('');
+    useEffect(() => getTitle(courseId));
+    const getTitle = (courseId) => {
+        courseService.findCourseById(courseId)
+            .then(course => setTitle(course.title))}
 
     return(
         <Provider store={store}>
@@ -30,7 +37,7 @@ const CourseEditor = ({history}) => {
                         </Link>
 
                         <div class="col-2 wbdv-course-title">
-                            <h4>Course Editor</h4>
+                            <h4>{Title}</h4>
                         </div>
                     </div>
                 </div>
