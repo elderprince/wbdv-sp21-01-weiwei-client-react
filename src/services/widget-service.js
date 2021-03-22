@@ -1,9 +1,11 @@
+const WIDGET_URL = process.env.REACT_APP_WIDGET_URL
+
 const findWidgetsForTopic = (topicId) =>
-    fetch(`http://localhost:8080/api/topics/${topicId}/widgets`)
+    fetch(`${WIDGET_URL}/topics/${topicId}/widgets`)
             .then(response => response.json());
 
 const createWidget = (topicId, widget) =>
-    fetch(`http://localhost:8080/api/topics/${topicId}/widgets`, {
+    fetch(`${WIDGET_URL}/api/topics/${topicId}/widgets`, {
         method: 'POST',
         body: JSON.stringify(widget),
         headers: {
@@ -13,13 +15,13 @@ const createWidget = (topicId, widget) =>
         .then(response => response.json());
 
 const deleteWidget = (id) =>
-    fetch(`http://localhost:8080/api/widgets/${id}`, {
+    fetch(`${WIDGET_URL}/widgets/${id}`, {
         method: "DELETE"
     })
         .then(response => response.json());
 
 const updateWidget = (id, widget) =>
-    fetch(`http://localhost:8080/api/widgets/${id}`, {
+    fetch(`${WIDGET_URL}/widgets/${id}`, {
         method: "PUT",
         body: JSON.stringify(widget),
         headers: {

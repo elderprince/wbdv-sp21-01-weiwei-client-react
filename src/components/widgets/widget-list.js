@@ -22,8 +22,6 @@ const WidgetList = (
         }
         }, [topicId])
 
-    console.log(widgets)
-
     return(
         <div>
             <i onClick={() => createWidget(topicId)} className="fas fa-plus float-right fa-2x"></i>
