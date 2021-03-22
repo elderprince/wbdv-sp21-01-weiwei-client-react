@@ -5,7 +5,7 @@ const findWidgetsForTopic = (topicId) =>
             .then(response => response.json());
 
 const createWidget = (topicId, widget) =>
-    fetch(`${WIDGET_URL}/api/topics/${topicId}/widgets`, {
+    fetch(`${WIDGET_URL}/topics/${topicId}/widgets`, {
         method: 'POST',
         body: JSON.stringify(widget),
         headers: {
