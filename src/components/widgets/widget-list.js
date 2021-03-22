@@ -22,7 +22,7 @@ const WidgetList = (
         }
         }, [topicId])
 
-    const [widget, setWidget] = useState({})
+    console.log(widgets)
 
     return(
         <div>
@@ -30,34 +30,21 @@ const WidgetList = (
             <h1>Widget List</h1>
             <ul className="list-group">
                 {
-                    widgets.map(_widget =>
-                        <li key={_widget.id} className="list-group-item">
+                    widgets.map(widget =>
+                        <li className="list-group-item">
                             {
-                                _widget.id === widget.id &&
-                                <>
-                                    <i onClick={() => deleteWidget(_widget)} className="fas fa-trash float-right"></i>
-                                    <i onClick={() => {
-                                        updateWidget(widget)}}
-                                       className="fas fa-check float-right"></i>
-                                </>
-                            }
-                            {
-                                _widget.id !== widget.id &&
-                                <i onClick={() => setWidget(_widget)} className="fas fa-cog float-right"></i>
-                            }
-                            {
-                                _widget.type === "HEADING" &&
+                                widget.type === "HEADING" &&
                                 <HeadingWidget
-                                    setWidget={setWidget}
-                                    editing={_widget.id === widget.id}
+                                    deleteWidget={deleteWidget}
+                                    updateWidget={updateWidget}
                                     widget={widget}/>
                             }
                             {
-                                _widget.type === "PARAGRAPH" &&
+                                widget.type === "PARAGRAPH" &&
                                 <ParagraphWidget
-                                    setWidget={setWidget}
-                                    editing={_widget.id === widget.id}
-                                    widget={_widget}/>
+                                    deleteWidget={deleteWidget}
+                                    updateWidget={updateWidget}
+                                    widget={widget}/>
                             }
                         </li>
                     )

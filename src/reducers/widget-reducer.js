@@ -32,12 +32,12 @@ const widgetReducer = (state = initialState, action) => {
                     if(widget.id === action.widgetToUpdate.id) {
                         return action.widgetToUpdate
                     } else {
-                        return module
+                        return widget
                     }
                 })
             }
 
-        case "FIND_WIDGETS_FOR_COURSE":
+        case "FIND_WIDGETS_FOR_TOPIC":
             return {
                 ...state,
                 widgets: action.widgets
