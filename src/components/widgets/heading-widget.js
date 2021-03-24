@@ -31,7 +31,7 @@ const HeadingWidget = (
             }
 
             {
-                editing &&
+                editing && CachedWidget.type === "HEADING" &&
 
                 <div>
 
@@ -42,20 +42,25 @@ const HeadingWidget = (
                     { CachedWidget.size === 5 && <h5>{CachedWidget.text}</h5>}
                     { CachedWidget.size === 6 && <h6>{CachedWidget.text}</h6>}
 
+                    <br/>
+
                     <>
-                        <i onClick={() => {
-                            deleteWidget(widget)
-                            setEditing(false)}}
-                           className="fas fa-trash float-right"></i>
-                        <i onClick={() => {
-                            setEditing(false)
-                            updateWidget(CachedWidget)}}
-                           className="fas fa-check float-right"></i>
+                        <select onChange={(e) => setCachedWidget({...CachedWidget, type: e.target.value})}
+                                value={CachedWidget.type}
+                                className="form-control">
+                            <option value={"HEADING"}>HEADING</option>
+                            <option value={"PARAGRAPH"}>PARAGRAPH</option>
+                        </select>
                     </>
+
+                    <br/>
 
                     <input onChange={(e) => setCachedWidget({...CachedWidget, text: e.target.value})}
                            value={CachedWidget.text}
                            className="form-control"/>
+
+                    <br/>
+
                     <select onChange={(e) => setCachedWidget({...CachedWidget, size: parseInt(e.target.value)})}
                             value={CachedWidget.size}
                             className="form-control">
@@ -66,6 +71,58 @@ const HeadingWidget = (
                         <option value={5}>Heading 5</option>
                         <option value={6}>Heading 6</option>
                     </select>
+
+
+                    <>
+                        <i onClick={() => {
+                            deleteWidget(widget)
+                            setEditing(false)}}
+                           className="fas fa-trash float-right">
+                        </i>
+
+                        <i onClick={() => {
+                            setEditing(false)
+                            updateWidget(CachedWidget)}}
+                           className="fas fa-check float-right">
+                        </i>
+                    </>
+                </div>
+            }
+
+            {
+                editing && CachedWidget.type === "PARAGRAPH" &&
+
+                <div>
+                    <>
+                        <select onChange={(e) => setCachedWidget({...CachedWidget, type: e.target.value})}
+                                value={CachedWidget.type}
+                                className="form-control">
+                            <option value={"HEADING"}>HEADING</option>
+                            <option value={"PARAGRAPH"}>PARAGRAPH</option>
+                        </select>
+                    </>
+
+                    <br/>
+
+                    <>
+                        <textarea
+                            onChange={(e) => setCachedWidget({...CachedWidget, text: e.target.value})}
+                            value={CachedWidget.text}
+                            className="form-control">
+                        </textarea>
+
+                        <i onClick={() => {
+                            deleteWidget(widget)
+                            setEditing(false)}}
+                           className="fas fa-trash float-right">
+                        </i>
+
+                        <i onClick={() => {
+                            setEditing(false)
+                            updateWidget(CachedWidget)}}
+                           className="fas fa-check float-right">
+                        </i>
+                    </>
                 </div>
             }
         </div>
