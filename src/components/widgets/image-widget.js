@@ -17,12 +17,13 @@ const ImageWidget = (
         <div>
             {
                 !editing &&
-                <img src={`${widget.src}`}
-                     alt={`${widget.name}`}
-                     width={`${widget.width}`}
-                     height={`${widget.height}`}>
 
                 <div>
+                    <img src={`${widget.src}`}
+                         alt={`${widget.name}`}
+                         width={`${widget.width}`}
+                         height={`${widget.height}`}/>
+
                     <i onClick={() => setEditing(true)}
                        className="fas fa-cog float-right">
                     </i>
@@ -32,12 +33,14 @@ const ImageWidget = (
 
             {
                 editing && CachedWidget.type === "IMAGE" &&
-                <img src={`${CachedWidget.src}`}
-                     alt={`${widget.name}`}
-                     width={`${CachedWidget.width}`}
-                     height={`${CachedWidget.height}`}>
+
 
                 <div>
+                    <img src={`${CachedWidget.src}`}
+                         alt={`${widget.name}`}
+                         width={`${CachedWidget.width}`}
+                         height={`${CachedWidget.height}`}/>
+
                     <br/>
 
                     <>
@@ -95,14 +98,12 @@ const ImageWidget = (
             {
                 editing && CachedWidget.type === "PARAGRAPH" &&
 
-                <div>
-                    <ParagraphWidget
-                        deleteWidget={deleteWidget}
-                        updateWidget={updateWidget}
-                        widget={CachedWidget}
-                        editing={editing}
-                        setEditing={setEditing}/>
-                </div>
+                <ParagraphWidget
+                    deleteWidget={deleteWidget}
+                    updateWidget={updateWidget}
+                    widget={CachedWidget}
+                    editing={editing}
+                    setEditing={setEditing}/>
             }
 
             {
