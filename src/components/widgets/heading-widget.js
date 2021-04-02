@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import ParagraphWidget from "./paragraph-widget";
 import ImageWidget from "./image-widget";
+import ListWidget from "./list-widget";
 
 const HeadingWidget = (
     {
@@ -48,9 +49,11 @@ const HeadingWidget = (
                     <br/>
 
                     <>
-                        <select onChange={(e) => setCachedWidget({...CachedWidget, type: e.target.value})}
-                                value={CachedWidget.type}
-                                className="form-control">
+                        <select
+                            onChange={(e) => setCachedWidget({...CachedWidget,
+                                type: e.target.value})}
+                            value={CachedWidget.type}
+                            className="form-control">
                             <option value={"HEADING"}>HEADING</option>
                             <option value={"PARAGRAPH"}>PARAGRAPH</option>
                             <option value={"LIST"}>LIST</option>
@@ -60,15 +63,19 @@ const HeadingWidget = (
 
                     <br/>
 
-                    <input onChange={(e) => setCachedWidget({...CachedWidget, text: e.target.value})}
-                           value={CachedWidget.text}
-                           className="form-control"/>
+                    <input
+                        onChange={(e) => setCachedWidget({...CachedWidget,
+                            text: e.target.value})}
+                        value={CachedWidget.text}
+                        className="form-control"/>
 
                     <br/>
 
-                    <select onChange={(e) => setCachedWidget({...CachedWidget, size: parseInt(e.target.value)})}
-                            value={CachedWidget.size}
-                            className="form-control">
+                    <select
+                        onChange={(e) => setCachedWidget({...CachedWidget,
+                            size: parseInt(e.target.value)})}
+                        value={CachedWidget.size}
+                        className="form-control">
                         <option value={1}>Heading 1</option>
                         <option value={2}>Heading 2</option>
                         <option value={3}>Heading 3</option>
@@ -111,6 +118,17 @@ const HeadingWidget = (
                 editing && CachedWidget.type === "IMAGE" &&
 
                 <ImageWidget
+                    deleteWidget={deleteWidget}
+                    updateWidget={updateWidget}
+                    widget={CachedWidget}
+                    editing={editing}
+                    setEditing={setEditing}/>
+            }
+
+            {
+                editing && CachedWidget.type === "LIST" &&
+
+                <ListWidget
                     deleteWidget={deleteWidget}
                     updateWidget={updateWidget}
                     widget={CachedWidget}

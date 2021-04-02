@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import ParagraphWidget from "./paragraph-widget";
 import HeadingWidget from "./heading-widget";
+import ListWidget from "./list-widget";
 
 const ImageWidget = (
     {
@@ -16,6 +17,11 @@ const ImageWidget = (
         <div>
             {
                 !editing &&
+                <img src={`${widget.src}`}
+                     alt={`${widget.name}`}
+                     width={`${widget.width}`}
+                     height={`${widget.height}`}>
+
                 <div>
                     <i onClick={() => setEditing(true)}
                        className="fas fa-cog float-right">
@@ -26,12 +32,17 @@ const ImageWidget = (
 
             {
                 editing && CachedWidget.type === "IMAGE" &&
-                <div>
+                <img src={`${CachedWidget.src}`}
+                     alt={`${widget.name}`}
+                     width={`${CachedWidget.width}`}
+                     height={`${CachedWidget.height}`}>
 
+                <div>
                     <br/>
 
                     <>
-                        <select onChange={(e) => setCachedWidget({...CachedWidget, type: e.target.value})}
+                        <select onChange={(e) => setCachedWidget({...CachedWidget,
+                                    type: e.target.value})}
                                 value={CachedWidget.type}
                                 className="form-control">
                             <option value={"HEADING"}>HEADING</option>
@@ -41,15 +52,29 @@ const ImageWidget = (
                         </select>
                     </>
 
+                    <br/>
+
                     URL
-                    <input onChange={(e) => setCachedWidget({...CachedWidget, src: e.target.value})}
-                           value={CachedWidget.src} className="form-control"/>
+                    <input onChange={(e) => setCachedWidget({...CachedWidget,
+                                src: e.target.value})}
+                           value={CachedWidget.src}
+                           className="form-control"/>
+
+                    <br/>
+
                     Width
-                    <input onChange={(e) => setCachedWidget({...CachedWidget, width: e.target.value})}
-                           value={CachedWidget.width} className="form-control"/>
+                    <input onChange={(e) => setCachedWidget({...CachedWidget,
+                                width: e.target.value})}
+                           value={CachedWidget.width}
+                           className="form-control"/>
+
+                    <br/>
+
                     Height
-                    <input onChange={(e) => setCachedWidget({...CachedWidget, height: e.target.value})}
-                           value={CachedWidget.height} className="form-control"/>
+                    <input onChange={(e) => setCachedWidget({...CachedWidget,
+                                height: e.target.value})}
+                           value={CachedWidget.height}
+                           className="form-control"/>
 
                     <>
                         <i onClick={() => {
@@ -84,6 +109,17 @@ const ImageWidget = (
                 editing && CachedWidget.type === "HEADING" &&
 
                 <HeadingWidget
+                    deleteWidget={deleteWidget}
+                    updateWidget={updateWidget}
+                    widget={CachedWidget}
+                    editing={editing}
+                    setEditing={setEditing}/>
+            }
+
+            {
+                editing && CachedWidget.type === "LIST" &&
+
+                <ListWidget
                     deleteWidget={deleteWidget}
                     updateWidget={updateWidget}
                     widget={CachedWidget}

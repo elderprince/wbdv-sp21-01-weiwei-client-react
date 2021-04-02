@@ -5,6 +5,7 @@ import HeadingWidget from "./heading-widget";
 import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
 import ImageWidget from "./image-widget";
+import ListWidget from "./list-widget";
 
 const WidgetList = (
     {
@@ -54,6 +55,15 @@ const WidgetList = (
                             {
                                 widget.type === "IMAGE" &&
                                 <ImageWidget
+                                    deleteWidget={deleteWidget}
+                                    updateWidget={updateWidget}
+                                    widget={widget}
+                                    editing={editing}
+                                    setEditing={setEditing}/>
+                            }
+                            {
+                                widget.type === "LIST" &&
+                                <ListWidget
                                     deleteWidget={deleteWidget}
                                     updateWidget={updateWidget}
                                     widget={widget}

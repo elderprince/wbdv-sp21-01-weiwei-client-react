@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import HeadingWidget from "./heading-widget";
 import ImageWidget from "./image-widget";
+import ListWidget from "./list-widget";
 
 const ParagraphWidget = (
     {
@@ -30,7 +31,8 @@ const ParagraphWidget = (
 
                 <div>
                     <>
-                        <select onChange={(e) => setCachedWidget({...CachedWidget, type: e.target.value})}
+                        <select onChange={(e) => setCachedWidget({...CachedWidget,
+                                    type: e.target.value})}
                                 value={CachedWidget.type}
                                 className="form-control">
                             <option value={"HEADING"}>HEADING</option>
@@ -44,7 +46,8 @@ const ParagraphWidget = (
 
                     <>
                         <textarea
-                            onChange={(e) => setCachedWidget({...CachedWidget, text: e.target.value})}
+                            onChange={(e) => setCachedWidget({...CachedWidget,
+                                text: e.target.value})}
                             value={CachedWidget.text}
                             className="form-control">
                         </textarea>
@@ -79,6 +82,17 @@ const ParagraphWidget = (
                 editing && CachedWidget.type === "IMAGE" &&
 
                 <ImageWidget
+                    deleteWidget={deleteWidget}
+                    updateWidget={updateWidget}
+                    widget={CachedWidget}
+                    editing={editing}
+                    setEditing={setEditing}/>
+            }
+
+            {
+                editing && CachedWidget.type === "LIST" &&
+
+                <ListWidget
                     deleteWidget={deleteWidget}
                     updateWidget={updateWidget}
                     widget={CachedWidget}
