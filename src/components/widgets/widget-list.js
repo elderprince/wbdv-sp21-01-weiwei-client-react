@@ -4,6 +4,7 @@ import ParagraphWidget from "./paragraph-widget";
 import HeadingWidget from "./heading-widget";
 import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
+import ImageWidget from "./image-widget";
 
 const WidgetList = (
     {
@@ -15,6 +16,8 @@ const WidgetList = (
     }) => {
 
     const {topicId} = useParams();
+
+    const [editing, setEditing] = useState(false)
 
     useEffect(() => {
         if (topicId !== "undefined" && typeof topicId !== "undefined") {
@@ -35,14 +38,27 @@ const WidgetList = (
                                 <HeadingWidget
                                     deleteWidget={deleteWidget}
                                     updateWidget={updateWidget}
-                                    widget={widget}/>
+                                    widget={widget}
+                                    editing={editing}
+                                    setEditing={setEditing}/>
                             }
                             {
                                 widget.type === "PARAGRAPH" &&
                                 <ParagraphWidget
                                     deleteWidget={deleteWidget}
                                     updateWidget={updateWidget}
-                                    widget={widget}/>
+                                    widget={widget}
+                                    editing={editing}
+                                    setEditing={setEditing}/>
+                            }
+                            {
+                                widget.type === "IMAGE" &&
+                                <ImageWidget
+                                    deleteWidget={deleteWidget}
+                                    updateWidget={updateWidget}
+                                    widget={widget}
+                                    editing={editing}
+                                    setEditing={setEditing}/>
                             }
                         </li>
                     )
