@@ -7,11 +7,10 @@ const ParagraphWidget = (
     {
         widget,
         deleteWidget,
-        updateWidget,
-        editing,
-        setEditing}) => {
+        updateWidget}) => {
 
     const [CachedWidget, setCachedWidget] = useState(widget)
+    const [editing, setEditing] = useState(false)
 
     return (
         <div>
@@ -31,8 +30,8 @@ const ParagraphWidget = (
 
                 <div>
                     <>
-                        <select onChange={(e) => setCachedWidget({...CachedWidget,
-                                    type: e.target.value})}
+                        <select onChange={(e) =>
+                                    setCachedWidget({...CachedWidget, type: e.target.value})}
                                 value={CachedWidget.type}
                                 className="form-control">
                             <option value={"HEADING"}>HEADING</option>
@@ -46,8 +45,8 @@ const ParagraphWidget = (
 
                     <>
                         <textarea
-                            onChange={(e) => setCachedWidget({...CachedWidget,
-                                text: e.target.value})}
+                            onChange={(e) =>
+                                setCachedWidget({...CachedWidget, text: e.target.value})}
                             value={CachedWidget.text}
                             className="form-control">
                         </textarea>
@@ -73,9 +72,7 @@ const ParagraphWidget = (
                 <HeadingWidget
                     deleteWidget={deleteWidget}
                     updateWidget={updateWidget}
-                    widget={CachedWidget}
-                    editing={editing}
-                    setEditing={setEditing}/>
+                    widget={CachedWidget}/>
             }
 
             {
@@ -84,9 +81,7 @@ const ParagraphWidget = (
                 <ImageWidget
                     deleteWidget={deleteWidget}
                     updateWidget={updateWidget}
-                    widget={CachedWidget}
-                    editing={editing}
-                    setEditing={setEditing}/>
+                    widget={CachedWidget}/>
             }
 
             {
@@ -95,9 +90,7 @@ const ParagraphWidget = (
                 <ListWidget
                     deleteWidget={deleteWidget}
                     updateWidget={updateWidget}
-                    widget={CachedWidget}
-                    editing={editing}
-                    setEditing={setEditing}/>
+                    widget={CachedWidget}/>
             }
         </div>
     )

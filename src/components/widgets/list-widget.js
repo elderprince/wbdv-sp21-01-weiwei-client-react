@@ -7,11 +7,11 @@ const ListWidget = (
     {
         widget,
         deleteWidget,
-        updateWidget,
-        editing,
-        setEditing}) => {
+        updateWidget}) => {
 
     const [CachedWidget, setCachedWidget] = useState(widget)
+    const [editing, setEditing] = useState(false)
+    const [EditingOrdered, setEditingOrdered] = useState(false)
 
     return (
         <div>
@@ -53,8 +53,8 @@ const ListWidget = (
                 <div>
                     <>
                         <select
-                            onChange={(e) => setCachedWidget({...CachedWidget,
-                                type: e.target.value})}
+                            onChange={(e) =>
+                                setCachedWidget({...CachedWidget, type: e.target.value})}
                             value={CachedWidget.type}
                             className="form-control">
                             <option value={"HEADING"}>HEADING</option>
@@ -66,7 +66,15 @@ const ListWidget = (
 
                     <br/>
 
-                    <input type="checkbox"/> Ordered
+                    <input
+                        type="checkbox"
+                        checked={EditingOrdered}
+                        onChange={(e) => {
+                            setEditingOrdered(!EditingOrdered)
+                            setCachedWidget({
+                                ...CachedWidget,
+                                ordered: e.target.checked})}
+                        }/> Ordered
 
                     <br/>
                     <br/>
@@ -74,8 +82,8 @@ const ListWidget = (
                     List Items
                     <textarea
                         rows={10}
-                        onChange={(e) => setCachedWidget({...CachedWidget,
-                            text: e.target.value})}
+                        onChange={(e) =>
+                            setCachedWidget({...CachedWidget, text: e.target.value})}
                         value={CachedWidget.text}
                         className="form-control">
                     </textarea>
@@ -103,9 +111,7 @@ const ListWidget = (
                     <ParagraphWidget
                         deleteWidget={deleteWidget}
                         updateWidget={updateWidget}
-                        widget={CachedWidget}
-                        editing={editing}
-                        setEditing={setEditing}/>
+                        widget={CachedWidget}/>
                 </div>
             }
 
@@ -115,9 +121,7 @@ const ListWidget = (
                 <HeadingWidget
                     deleteWidget={deleteWidget}
                     updateWidget={updateWidget}
-                    widget={CachedWidget}
-                    editing={editing}
-                    setEditing={setEditing}/>
+                    widget={CachedWidget}/>
             }
 
             {
@@ -126,9 +130,7 @@ const ListWidget = (
                 <ImageWidget
                     deleteWidget={deleteWidget}
                     updateWidget={updateWidget}
-                    widget={CachedWidget}
-                    editing={editing}
-                    setEditing={setEditing}/>
+                    widget={CachedWidget}/>
             }
         </div>
     )

@@ -7,11 +7,10 @@ const HeadingWidget = (
     {
         widget,
         deleteWidget,
-        updateWidget,
-        editing,
-        setEditing}) => {
+        updateWidget}) => {
 
     const [CachedWidget, setCachedWidget] = useState(widget)
+    const [editing, setEditing] = useState(false)
 
     return(
 
@@ -50,8 +49,8 @@ const HeadingWidget = (
 
                     <>
                         <select
-                            onChange={(e) => setCachedWidget({...CachedWidget,
-                                type: e.target.value})}
+                            onChange={(e) =>
+                                setCachedWidget({...CachedWidget, type: e.target.value})}
                             value={CachedWidget.type}
                             className="form-control">
                             <option value={"HEADING"}>HEADING</option>
@@ -64,16 +63,16 @@ const HeadingWidget = (
                     <br/>
 
                     <input
-                        onChange={(e) => setCachedWidget({...CachedWidget,
-                            text: e.target.value})}
+                        onChange={(e) =>
+                            setCachedWidget({...CachedWidget, text: e.target.value})}
                         value={CachedWidget.text}
                         className="form-control"/>
 
                     <br/>
 
                     <select
-                        onChange={(e) => setCachedWidget({...CachedWidget,
-                            size: parseInt(e.target.value)})}
+                        onChange={(e) =>
+                            setCachedWidget({...CachedWidget, size: parseInt(e.target.value)})}
                         value={CachedWidget.size}
                         className="form-control">
                         <option value={1}>Heading 1</option>
@@ -108,9 +107,7 @@ const HeadingWidget = (
                     <ParagraphWidget
                         deleteWidget={deleteWidget}
                         updateWidget={updateWidget}
-                        widget={CachedWidget}
-                        editing={editing}
-                        setEditing={setEditing}/>
+                        widget={CachedWidget}/>
                 </div>
             }
 
@@ -120,9 +117,7 @@ const HeadingWidget = (
                 <ImageWidget
                     deleteWidget={deleteWidget}
                     updateWidget={updateWidget}
-                    widget={CachedWidget}
-                    editing={editing}
-                    setEditing={setEditing}/>
+                    widget={CachedWidget}/>
             }
 
             {
@@ -131,9 +126,7 @@ const HeadingWidget = (
                 <ListWidget
                     deleteWidget={deleteWidget}
                     updateWidget={updateWidget}
-                    widget={CachedWidget}
-                    editing={editing}
-                    setEditing={setEditing}/>
+                    widget={CachedWidget}/>
             }
         </div>
     )

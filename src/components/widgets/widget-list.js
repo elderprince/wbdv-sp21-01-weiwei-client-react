@@ -18,8 +18,6 @@ const WidgetList = (
 
     const {topicId} = useParams();
 
-    const [editing, setEditing] = useState(false)
-
     useEffect(() => {
         if (topicId !== "undefined" && typeof topicId !== "undefined") {
             findWidgetsForTopic(topicId)
@@ -39,36 +37,28 @@ const WidgetList = (
                                 <HeadingWidget
                                     deleteWidget={deleteWidget}
                                     updateWidget={updateWidget}
-                                    widget={widget}
-                                    editing={editing}
-                                    setEditing={setEditing}/>
+                                    widget={widget}/>
                             }
                             {
                                 widget.type === "PARAGRAPH" &&
                                 <ParagraphWidget
                                     deleteWidget={deleteWidget}
                                     updateWidget={updateWidget}
-                                    widget={widget}
-                                    editing={editing}
-                                    setEditing={setEditing}/>
+                                    widget={widget}/>
                             }
                             {
                                 widget.type === "IMAGE" &&
                                 <ImageWidget
                                     deleteWidget={deleteWidget}
                                     updateWidget={updateWidget}
-                                    widget={widget}
-                                    editing={editing}
-                                    setEditing={setEditing}/>
+                                    widget={widget}/>
                             }
                             {
                                 widget.type === "LIST" &&
                                 <ListWidget
                                     deleteWidget={deleteWidget}
                                     updateWidget={updateWidget}
-                                    widget={widget}
-                                    editing={editing}
-                                    setEditing={setEditing}/>
+                                    widget={widget}/>
                             }
                         </li>
                     )

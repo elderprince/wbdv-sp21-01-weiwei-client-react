@@ -7,11 +7,10 @@ const ImageWidget = (
     {
         widget,
         deleteWidget,
-        updateWidget,
-        editing,
-        setEditing}) => {
+        updateWidget}) => {
 
     const [CachedWidget, setCachedWidget] = useState(widget)
+    const [editing, setEditing] = useState(false)
 
     return (
         <div>
@@ -44,8 +43,8 @@ const ImageWidget = (
                     <br/>
 
                     <>
-                        <select onChange={(e) => setCachedWidget({...CachedWidget,
-                                    type: e.target.value})}
+                        <select onChange={(e) =>
+                                    setCachedWidget({...CachedWidget, type: e.target.value})}
                                 value={CachedWidget.type}
                                 className="form-control">
                             <option value={"HEADING"}>HEADING</option>
@@ -58,24 +57,24 @@ const ImageWidget = (
                     <br/>
 
                     URL
-                    <input onChange={(e) => setCachedWidget({...CachedWidget,
-                                src: e.target.value})}
+                    <input onChange={(e) =>
+                                setCachedWidget({...CachedWidget, src: e.target.value})}
                            value={CachedWidget.src}
                            className="form-control"/>
 
                     <br/>
 
                     Width
-                    <input onChange={(e) => setCachedWidget({...CachedWidget,
-                                width: e.target.value})}
+                    <input onChange={(e) =>
+                                setCachedWidget({...CachedWidget, width: e.target.value})}
                            value={CachedWidget.width}
                            className="form-control"/>
 
                     <br/>
 
                     Height
-                    <input onChange={(e) => setCachedWidget({...CachedWidget,
-                                height: e.target.value})}
+                    <input onChange={(e) =>
+                                setCachedWidget({...CachedWidget, height: e.target.value})}
                            value={CachedWidget.height}
                            className="form-control"/>
 
@@ -101,9 +100,7 @@ const ImageWidget = (
                 <ParagraphWidget
                     deleteWidget={deleteWidget}
                     updateWidget={updateWidget}
-                    widget={CachedWidget}
-                    editing={editing}
-                    setEditing={setEditing}/>
+                    widget={CachedWidget}/>
             }
 
             {
@@ -112,9 +109,7 @@ const ImageWidget = (
                 <HeadingWidget
                     deleteWidget={deleteWidget}
                     updateWidget={updateWidget}
-                    widget={CachedWidget}
-                    editing={editing}
-                    setEditing={setEditing}/>
+                    widget={CachedWidget}/>
             }
 
             {
@@ -123,9 +118,7 @@ const ImageWidget = (
                 <ListWidget
                     deleteWidget={deleteWidget}
                     updateWidget={updateWidget}
-                    widget={CachedWidget}
-                    editing={editing}
-                    setEditing={setEditing}/>
+                    widget={CachedWidget}/>
             }
         </div>
     )
