@@ -39,6 +39,11 @@ const CourseRow = (
             <td className="col-md-2 col-0 col-lg-2">{course.owner}</td>
             <td className="col-md-0 col-0 col-lg-2">{course.lastModified}</td>
             <td>
+                <Link to={`/courses/${course._id}/quizzes`}>
+                    Quizzes
+                </Link>
+            </td>
+            <td>
                 <i onClick={() => deleteCourse(course)} className="fas fa-trash"></i>
 
                 {
