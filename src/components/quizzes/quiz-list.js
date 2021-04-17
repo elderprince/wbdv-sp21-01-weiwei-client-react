@@ -1,17 +1,18 @@
-import React, {useState, useEffect} from "react";
+import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import quizService from "../../services/quiz-service"
 
 const QuizzesList = () => {
+
     const {courseId} = useParams();
     const [quizzes, setQuizzes] = useState([])
 
     useEffect(() => {
         quizService.findAllQuizzes()
-            .then((quizzes) => {
-                setQuizzes(quizzes)
-            })
+            .then((quizzes) => setQuizzes(quizzes))
     }, [])
+
+
 
     return(
         <div>
@@ -33,4 +34,4 @@ const QuizzesList = () => {
     )
 }
 
-export default QuizzesList;
+export default QuizzesList

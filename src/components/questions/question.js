@@ -1,4 +1,3 @@
-import React from "react";
 import TrueFalseQuestion from "./true-false-question";
 import MultipleChoiceQuestion from "./multiple-choice-question";
 

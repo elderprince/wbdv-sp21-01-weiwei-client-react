@@ -1,4 +1,4 @@
-const QUIZZES_URL = 'http://localhost:3000/api/quizzes';
+const QUIZZES_URL = 'http://localhost:8080/api/quizzes';
 
 const findAllQuizzes = () => {
     return fetch(QUIZZES_URL)
@@ -10,6 +10,8 @@ const findQuizById = (qid) => {
         .then(response => response.json() )
 }
 
-export default {
+const api = {
     findAllQuizzes, findQuizById
 }
+
+export default api;

@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import widgetService from "../../services/widget-service"
 import ParagraphWidget from "./paragraph-widget";
 import HeadingWidget from "./heading-widget";
