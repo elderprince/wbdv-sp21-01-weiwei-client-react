@@ -1,12 +1,12 @@
-const WIDGET_URL = process.env.REACT_APP_WIDGET_URL
+const QUIZ_URL = process.env.REACT_APP_QUIZ_URL
 
 const findAllQuizzes = () => {
-    return fetch(`${WIDGET_URL}/quizzes`)
+    return fetch(`${QUIZ_URL}/quizzes`)
         .then(response => response.json())
 }
 
 const findQuizById = (qid) => {
-    return fetch(`${WIDGET_URL}/quizzes/${qid}`)
+    return fetch(`${QUIZ_URL}/quizzes/${qid}`)
         .then(response => response.json() )
 }
 
