@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 
 const MultipleChoiceQuestion = ({question}) => {
-    const [yourAnswer, setYourAnswer] = useState("")
+    const [yourAnswer, setYourAnswer] = useState('')
+    const [mark, setMark] = useState(false)
 
     const grade = (yourAnswer) => {
         if (yourAnswer === question.correct) {
@@ -11,21 +12,26 @@ const MultipleChoiceQuestion = ({question}) => {
         }
     }
 
+    const forClick = () => {
+        setMark(true)
+        grade()
+    }
+
     return(
         <div>
             <h5>
                 {question.question}
                 {
-                    question.correct === yourAnswer &&
+                    question.correct === yourAnswer && mark &&
                     <i className="fas fa-check"></i>
                 }
                 {
-                    question.correct !== yourAnswer &&
+                    question.correct !== yourAnswer && mark &&
                     <i className="fas fa-times"></i>
                 }
             </h5>
 
-            <ul className="list-group w-50">
+            <ul className="list-group w-25">
                 {
                     question.choices.map((choice) =>
                             <li className={`list-group-item 
@@ -44,7 +50,7 @@ const MultipleChoiceQuestion = ({question}) => {
             <p>Your answer: {yourAnswer}</p>
             <p>{question.correct}</p>
             <button type="button" className="btn btn-success"
-                    onClick={grade}>
+                    onClick={forClick}>
                 Grade
             </button>
         </div>
