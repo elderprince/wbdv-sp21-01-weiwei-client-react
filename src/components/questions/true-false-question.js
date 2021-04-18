@@ -46,13 +46,23 @@ const TrueFalseQuestion = ({question}) => {
                 <li className={`list-group-item ${trueClass}`}>
                     <label><input
                         type="radio"
-                        onClick={() => setAnswer(true)}
+                        onClick={() => {
+                            setAnswer(true)
+                            setMark(false)
+                            setTrueClass('')
+                            setFalseClass('')
+                        }}
                         name={question._id}/>True</label>
                 </li>
                 <li className={`list-group-item ${falseClass}`}>
                     <label><input
                         type="radio"
-                        onClick={() => setAnswer(false)}
+                        onClick={() => {
+                            setAnswer(false)
+                            setMark(false)
+                            setTrueClass('')
+                            setFalseClass('')
+                        }}
                         name={question._id}/>False</label>
                 </li>
             </ul>

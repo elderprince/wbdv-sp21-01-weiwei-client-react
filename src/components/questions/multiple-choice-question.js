@@ -2,19 +2,30 @@ import React, {useState} from "react";
 
 const MultipleChoiceQuestion = ({question}) => {
     const [yourAnswer, setYourAnswer] = useState('')
+    const [correctClass, setCorrectClass] = useState('')
+    const [wrongClass, setWrongClass] = useState('')
     const [mark, setMark] = useState(false)
 
-    const grade = (yourAnswer) => {
-        if (yourAnswer === question.correct) {
+    const grade = () => {
+        setCorrectClass('list-group-item-success')
+        setWrongClass('list-group-item-danger')
 
-        } else {
-
-        }
     }
 
     const forClick = () => {
         setMark(true)
         grade()
+    }
+
+    let choiceColorDic = {}
+    for(let i of question.choices){
+        if(i == question.correct){
+            choiceColorDic[i] = correctClass;
+        }else if(i == yourAnswer){
+            choiceColorDic[i] = wrongClass;
+        }else{
+            choiceColorDic[i] = '';
+        }
     }
 
     return(
@@ -33,22 +44,26 @@ const MultipleChoiceQuestion = ({question}) => {
 
             <ul className="list-group w-25">
                 {
-                    question.choices.map((choice) =>
+                    question.choices.map((choice) => {
+
+                        return(
                             <li className={`list-group-item 
-                            ${choice === question.correct && choice === yourAnswer ? 'list-group-item-success' : ''}`}>
+                            ${choiceColorDic[choice]}`}>
                                 <label><input
                                     onClick={() => {
                                         setYourAnswer(choice)
+                                        setMark(false)
+                                        setCorrectClass('')
+                                        setWrongClass('')
                                     }}
                                     type="radio"
                                     name={question._id}/> {choice}</label>
-                            </li>
+                            </li>)}
                     )
                 }
             </ul>
 
             <p>Your answer: {yourAnswer}</p>
-            <p>{question.correct}</p>
             <button type="button" className="btn btn-success"
                     onClick={forClick}>
                 Grade
