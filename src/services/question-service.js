@@ -1,8 +1,8 @@
-const QUIZZES_URL = 'http://localhost:8080/api/quizzes';
+const WIDGET_URL = process.env.REACT_APP_WIDGET_URL
 
 const findQuestionsForQuiz = (qid) => {
-    return fetch(`${QUIZZES_URL}/${qid}/questions` )
-        .then(response => response. json() )
+    return fetch(`${WIDGET_URL}/quizzes/${qid}/questions` )
+        .then(response => response.json() )
 }
 
 const api = {
