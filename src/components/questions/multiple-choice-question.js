@@ -1,27 +1,21 @@
-import React, {useState} from "react";
+import React from "react";
 
-const MultipleChoiceQuestion = ({question}) => {
-    const [yourAnswer, setYourAnswer] = useState('')
-    const [correctClass, setCorrectClass] = useState('')
-    const [wrongClass, setWrongClass] = useState('')
-    const [mark, setMark] = useState(false)
-
-    const grade = () => {
-        setCorrectClass('list-group-item-success')
-        setWrongClass('list-group-item-danger')
-
-    }
-
-    const forClick = () => {
-        setMark(true)
-        grade()
-    }
+const MultipleChoiceQuestion = (
+    {
+        question,
+        mark,
+        setMark,
+        correctClass,
+        setCorrectClass,
+        wrongClass,
+        setWrongClass
+    }) => {
 
     let choiceColorDic = {}
     for(let i of question.choices){
-        if(i == question.correct){
+        if(i === question.correct){
             choiceColorDic[i] = correctClass;
-        }else if(i == yourAnswer){
+        }else if(i === question.answer){
             choiceColorDic[i] = wrongClass;
         }else{
             choiceColorDic[i] = '';
@@ -33,11 +27,11 @@ const MultipleChoiceQuestion = ({question}) => {
             <h5>
                 {question.question}
                 {
-                    question.correct === yourAnswer && mark &&
+                    question.correct === question.answer && mark &&
                     <i className="fas fa-check"></i>
                 }
                 {
-                    question.correct !== yourAnswer && mark &&
+                    question.correct !== question.answer && mark &&
                     <i className="fas fa-times"></i>
                 }
             </h5>
@@ -51,7 +45,7 @@ const MultipleChoiceQuestion = ({question}) => {
                             ${choiceColorDic[choice]}`}>
                                 <label><input
                                     onClick={() => {
-                                        setYourAnswer(choice)
+                                        {question.answer = choice}
                                         setMark(false)
                                         setCorrectClass('')
                                         setWrongClass('')
@@ -63,11 +57,7 @@ const MultipleChoiceQuestion = ({question}) => {
                 }
             </ul>
 
-            <p>Your answer: {yourAnswer}</p>
-            <button type="button" className="btn btn-success"
-                    onClick={forClick}>
-                Grade
-            </button>
+            <p>Your answer: {question.answer}</p>
         </div>
     )
 }

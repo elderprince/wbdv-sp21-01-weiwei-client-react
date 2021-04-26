@@ -11,14 +11,14 @@ const findQuizById = (qid) => {
 }
 
 const submitQuiz = (quizId, questions) => {
-    fetch(`{QUIZ_URL}/quizzes/${quizId}/attempts`, {
+    return fetch(`{QUIZ_URL}/quizzes/${quizId}/attempts`, {
         method: 'POST',
         body: JSON.stringify(questions),
         headers: {
             'content-type': 'application/json'
         }
-    }).then(response => response.json())
-        .then(result => console.log(result))
+    })
+        .then(response => response.json())
 }
 
 const api = {
