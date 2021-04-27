@@ -61,10 +61,6 @@ const TrueFalseQuestion = (
                         name={question._id}/>False</label>
                 </li>
             </ul>
-
-            <p>
-                Your answer: {question.answer}
-            </p>
         </div>
     )
 }

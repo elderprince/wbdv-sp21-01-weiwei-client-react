@@ -56,8 +56,6 @@ const MultipleChoiceQuestion = (
                     )
                 }
             </ul>
-
-            <p>Your answer: {question.answer}</p>
         </div>
     )
 }

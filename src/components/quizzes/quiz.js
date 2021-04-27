@@ -2,6 +2,7 @@ import {useState, useEffect} from "react";
 import {useParams} from 'react-router-dom';
 import Question from "../questions/question";
 import questionService from "../../services/question-service";
+import quizService from "../../services/quiz-service"
 
 const Quiz = () => {
     const {quizId} = useParams();
@@ -15,17 +16,14 @@ const Quiz = () => {
         setMark(true)
         setCorrectClass('list-group-item-success')
         setWrongClass('list-group-item-danger')
+        quizService.submitQuiz(quizId, questions)
+            .then(attempt => setAttempt(attempt))
     }
 
     useEffect(() => {
         questionService.findQuestionsForQuiz(quizId)
             .then(questions => setQuestions(questions))
     },[])
-
-    // useEffect(() => {
-    //     questionService.submitQuiz(quizId, questions)
-    //         .then(attempt => setAttempt(attempt))
-    // },[])
 
     return(
         <div>
@@ -52,6 +50,7 @@ const Quiz = () => {
                 Submit
             </button>
 
+            <br/>
             <br/>
 
             <p>Your score: {attempt.score}</p>
