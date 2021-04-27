@@ -21,16 +21,10 @@ const submitQuiz = (quizId, questions) => {
         .then(response => response.json())
 }
 
-const findAttempts = (quizId) => {
-    return fetch(`${QUIZ_URL}/quizzes/${quizId}/attempts`)
-        .then(response => response.json)
-}
-
 const api = {
     findAllQuizzes,
     findQuizById,
-    submitQuiz,
-    findAttempts
+    submitQuiz
 }
 
 export default api;
